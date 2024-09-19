@@ -33,7 +33,7 @@ android {
     namespace = "org.mifospay"
 
     defaultConfig {
-        applicationId = "org.mifospay"
+        applicationId = "org.vuna" // or your preferred package name
         versionName = project.version.toString()
         versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 1
         vectorDrawables.useSupportLibrary = true
