@@ -4,6 +4,7 @@ buildscript {
         classpath(libs.google.oss.licenses.plugin) {
             exclude(group = "com.google.protobuf")
         }
+        // Remove any classpath declarations for Firebase Crashlytic
     }
 }
 
@@ -15,7 +16,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
     alias(libs.plugins.dependencyGuard) apply false
-    alias(libs.plugins.firebase.crashlytics) apply false
+    // alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.perf) apply false
     alias(libs.plugins.gms) apply false
     alias(libs.plugins.hilt) apply false
@@ -34,6 +35,18 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.wire) apply false
+}
+
+allprojects {
+    tasks.withType<JavaCompile> {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
+    }
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_17.toString()
+        }
+    }
 }
 
 tasks.register("versionFile").configure {

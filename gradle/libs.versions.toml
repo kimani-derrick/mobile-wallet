@@ -35,7 +35,7 @@ dependencyGuard = "0.5.0"
 detekt = "1.23.5"
 espresso-core = "3.6.1"
 firebaseBom = "33.1.2"
-firebaseCrashlyticsPlugin = "3.0.2"
+firebaseCrashlyticsPlugin = "2.9.2"
 firebasePerfPlugin = "1.4.2"
 gmsPlugin = "4.4.2"
 googleOss = "17.1.0"
@@ -212,7 +212,6 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
 gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

@@ -27,6 +27,7 @@ plugins {
     alias(libs.plugins.mifospay.android.application.firebase)
     alias(libs.plugins.roborazzi)
     id("com.google.android.gms.oss-licenses-plugin")
+    id("com.google.firebase.crashlytics") version "2.9.2"
 }
 
 android {
@@ -160,6 +161,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.hilt.android.testing)
+
+    compileOnly(libs.firebase.crashlytics.gradlePlugin)
 }
 
 dependencyGuard {
