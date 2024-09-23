@@ -37,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -153,7 +154,7 @@ private fun MifosWalletCardScreen(
             .fillMaxWidth()
             .height(225.dp)
             .padding(top = 20.dp, bottom = 32.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onSurface),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFA500)), // Changed card color to orange
     ) {
         Column(
             modifier = Modifier
@@ -164,11 +165,11 @@ private fun MifosWalletCardScreen(
             val walletBalanceLabel =
                 if (account != null) "(${account.currency.displayLabel})" else ""
             Text(
-                text = "Wallet Balance $walletBalanceLabel",
+                text = "Portfolio Balance $walletBalanceLabel", // Changed text from "Wallet Balance" to "Portfolio Balance"
                 style = TextStyle(
                     fontSize = 12.sp,
                     fontWeight = FontWeight.W400,
-                    color = lightGrey,
+                    color = Color.White, // Changed text color to white for better contrast
                 ),
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -186,7 +187,7 @@ private fun MifosWalletCardScreen(
                 style = TextStyle(
                     fontSize = 42.sp,
                     fontWeight = FontWeight(600),
-                    color = MaterialTheme.colorScheme.surface,
+                    color = Color.White, // Changed text color to white for better contrast
                 ),
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -200,7 +201,7 @@ private fun MifosWalletCardScreen(
                 style = TextStyle(
                     fontSize = 12.sp,
                     fontWeight = FontWeight(500),
-                    color = lightGrey,
+                    color = Color.White, // Changed text color to white for better contrast
                 ),
             )
         }
@@ -218,21 +219,23 @@ private fun PayRequestScreen(
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         PayCard(
-            title = "Request",
-            icon = R.drawable.core_ui_money_in,
+            title = "Invest", // Changed label from "Request" to "Invest"
+            icon = R.drawable.core_ui_money_in, // Using the old icon for "Request"
             {
                 onRequest.invoke()
             },
             modifier = Modifier.weight(1f),
+            backgroundColor = Color(0xFF4CAF50), // Green color for "Invest"
         )
         Spacer(modifier = Modifier.width(16.dp))
         PayCard(
-            title = "Pay",
-            icon = R.drawable.core_ui_money_out,
+            title = "Withdraw", // Changed label from "Pay" to "Withdraw"
+            icon = R.drawable.core_ui_money_out, // Using the old icon for "Pay"
             {
                 onPay.invoke()
             },
             modifier = Modifier.weight(1f),
+            backgroundColor = Color(0xFFF44336), // Red color for "Withdraw"
         )
     }
 }
@@ -243,13 +246,15 @@ private fun PayCard(
     icon: Int,
     onClickCard: () -> Unit,
     modifier: Modifier = Modifier,
+    backgroundColor: Color, // Added backgroundColor parameter
 ) {
     Card(
         modifier = modifier
             .height(144.dp)
             .clickable { onClickCard.invoke() },
         border = BorderStroke(1.dp, border),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        colors = CardDefaults.cardColors(containerColor = backgroundColor), // Use the backgroundColor parameter
+        shape = RoundedCornerShape(8.dp), // Changed shape to a button-like shape
     ) {
         Column(
             modifier = Modifier
@@ -289,9 +294,9 @@ private fun HomeScreenPreview() {
             balance = 10000.0,
             id = 1L,
             currency = Currency(
-                code = "USD",
-                displayLabel = "$",
-                displaySymbol = "$",
+                code = "KES", // Changed currency code to KES
+                displayLabel = "KSh", // Changed display label to KSh
+                displaySymbol = "KSh", // Changed display symbol to KSh
             ),
             productId = 1223,
         ),
@@ -300,9 +305,9 @@ private fun HomeScreenPreview() {
                 transactionId = index.toString(),
                 amount = 23004.0,
                 currency = Currency(
-                    code = "USD",
-                    displayLabel = "$",
-                    displaySymbol = "$",
+                    code = "KES", // Changed currency code to KES
+                    displayLabel = "KSh", // Changed display label to KSh
+                    displaySymbol = "KSh", // Changed display symbol to KSh
                 ),
                 transactionType = TransactionType.CREDIT,
             )
@@ -326,5 +331,6 @@ private fun PayCardPreview() {
         R.drawable.feature_home_ic_arrow_back_black_24dp,
         { },
         Modifier.width(150.dp),
+        backgroundColor = Color.Gray // Added backgroundColor parameter
     )
 }
